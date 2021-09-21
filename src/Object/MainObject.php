@@ -24,34 +24,25 @@ class MainObject {
         try {
             $this->repo = \acdhOeaw\arche\lib\Repo::factory($this->config);
             $this->repodb = \acdhOeaw\arche\lib\RepoDb::factory($this->config);
-            
         } catch (\Exception $ex) {
             \Drupal::messenger()->addWarning($this->t('Error during the BaseController initialization!') . ' ' . $ex->getMessage());
             return array();
         }
     }
-    
+
     protected function createModel(): void {
-        $this->model = new \Drupal\arche_mde_api\Model\PersonsModel();
+        $this->model = new \stdClass();
     }
-    
-    
-    public function init(): bool {
-      
-        try {
-            $this->formatView($this->model->getData($this->str));
-            return true;
-        } catch (\Exception $ex) {
-            \Drupal::logger('arche_mde_api')->notice($ex->getMessage());
-            return false;
-        }
+
+    public function init(): array {
+        return $this->formatView($this->model->getData($this->str));
     }
 
     public function getData(): array {
         return $this->result;
     }
 
-    protected function formatView(array $data): void {
+    protected function formatView(array $data): array {
         $this->result = array();
         foreach ($data as $k => $val) {
             foreach ($val as $v) {
@@ -71,6 +62,7 @@ class MainObject {
                 }
             }
         }
-        $this->result = array_values($this->result);
+        return $this->result = array_values($this->result);
     }
+
 }

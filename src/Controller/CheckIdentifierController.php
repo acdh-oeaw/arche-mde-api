@@ -11,21 +11,21 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  *
  * @author nczirjak
  */
-class ConceptsController {
+class CheckIdentifierController {
    
     public function execute(string $searchStr): Response {
         /*
          * Usage:
-         *  https://domain.com/browser/api/mde/concepts/MYVALUE?_format=json
+         *  https://domain.com/browser/api/mde/checkIdentifier/MYVALUE?_format=json
          */
 
         if (empty($searchStr)) {
-            return new JsonResponse(array("Please provide a search string"), 404, ['Content-Type' => 'application/json']);
+            return new JsonResponse(array("Please provide a repo id"), 404, ['Content-Type' => 'application/json']);
         }
         
-        $object = new \Drupal\arche_mde_api\Object\ConceptsObject($searchStr);
-        $object->init();
+        $object = new \Drupal\arche_mde_api\Object\CheckIdentifierObject($searchStr);
         
+        $object->init($searchStr);
         if (count($object->getData()) == 0) {
             return new JsonResponse(array("There is no resource"), 404, ['Content-Type' => 'application/json']);
         }

@@ -31,4 +31,11 @@ arche_api_concepts:
     defaults:
         _controller: '\Drupal\arche_mde_api\Controller\MainController::api_concepts'
     requirements:        
+        _access: 'TRUE'  
+
+arche_api_check_identifier:    
+    path: '/api/mde/checkIdentifier/{searchStr}'
+    defaults:
+        _controller: '\Drupal\arche_mde_api\Controller\MainController::api_check_identifier'
+    requirements:        
         _access: 'TRUE'          

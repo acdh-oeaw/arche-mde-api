@@ -15,7 +15,7 @@ class PlacesController {
     public function execute(string $searchStr): Response {
         /*
          * Usage:
-         *  https://domain.com/browser/api/v2/places/MYVALUE?_format=json
+         *  https://domain.com/browser/api/mde/places/MYVALUE?_format=json
          */
 
         if (empty($searchStr)) {
@@ -28,7 +28,7 @@ class PlacesController {
         if (count($object->getData()) == 0) {
             return new JsonResponse(array("There is no resource"), 404, ['Content-Type' => 'application/json']);
         }
-        return new JsonResponse(json_encode($object->getData()), 200, ['Content-Type' => 'application/json']);
+        return new JsonResponse($object->getData(), 200, ['Content-Type' => 'application/json']);
     }
 
 }

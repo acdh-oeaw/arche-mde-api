@@ -14,7 +14,7 @@ class PersonsController {
     public function execute(string $searchStr): JsonResponse {
         /*
          * Usage:
-         *  https://domain.com/browser/api/v2/persons/MYVALUE?_format=json
+         *  https://domain.com/browser/api/mde/persons/MYVALUE?_format=json
          */
 
         if (empty($searchStr)) {

@@ -10,8 +10,7 @@ namespace Drupal\arche_mde_api\Model;
 class OrganisationsModel extends \Drupal\arche_mde_api\Model\MainApiModel {
     
     public function getData(string $searchStr): array
-    {
-       
+    {  
         $result = array();
         //run the actual query
         try {
