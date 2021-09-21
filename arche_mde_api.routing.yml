@@ -1,0 +1,34 @@
+arche_api_persons:    
+    path: '/api/mde/persons/{searchStr}'
+    defaults:
+        _controller: '\Drupal\arche_mde_api\Controller\MainController::api_persons'
+    requirements:
+        _access: 'TRUE'
+        
+arche_api_places:    
+    path: '/api/mde/places/{searchStr}'
+    defaults:
+        _controller: '\Drupal\arche_mde_api\Controller\MainController::api_places'
+    requirements:
+        _access: 'TRUE'        
+
+arche_api_publications:    
+    path: '/api/mde/publications/{searchStr}'
+    defaults:
+        _controller: '\Drupal\arche_mde_api\Controller\MainController::api_publications'
+    requirements:        
+        _access: 'TRUE'        
+
+arche_api_organisations:    
+    path: '/api/mde/organisations/{searchStr}'
+    defaults:
+        _controller: '\Drupal\arche_mde_api\Controller\MainController::api_organisations'
+    requirements:        
+        _access: 'TRUE'  
+
+arche_api_concepts:    
+    path: '/api/mde/concepts/{searchStr}'
+    defaults:
+        _controller: '\Drupal\arche_mde_api\Controller\MainController::api_concepts'
+    requirements:        
+        _access: 'TRUE'          

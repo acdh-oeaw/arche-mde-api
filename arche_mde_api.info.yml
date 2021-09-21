@@ -1,0 +1,9 @@
+name: Arche Metadata Editor Api
+type: module
+version: 1.0
+description: 'ACDH-CH ARCHE Metadata Editor API plugin'
+core_version_requirement: ^8.8 || ^9
+package: OEAW
+
+'interface translation project': arche_mde_api
+'interface translation server pattern': modules/contrib/arche-gui-api/translations/arche_mde_api-%language.po    
