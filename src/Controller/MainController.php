@@ -70,6 +70,17 @@ class MainController extends \Drupal\Core\Controller\ControllerBase {
      * @param string $searchStr
      * @return Response
      */
+    public function api_getData(string $type, string $searchStr): JsonResponse
+    {   
+        $controller = new \Drupal\arche_mde_api\Controller\GetDataApiController();
+        return $controller->execute($type, $searchStr);
+    }
+    
+    /**
+     * ACDH:Organisations for metadata editor
+     * @param string $searchStr
+     * @return Response
+     */
     public function api_check_identifier(string $searchStr): JsonResponse
     {   
         $controller = new \Drupal\arche_mde_api\Controller\CheckIdentifierController();
