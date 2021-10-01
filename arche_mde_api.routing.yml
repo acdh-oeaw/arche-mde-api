@@ -45,4 +45,36 @@ arche_api_getData:
     defaults:
         _controller: '\Drupal\arche_mde_api\Controller\MainController::api_getData'
     requirements:        
-        _access: 'TRUE'           
+        _access: 'TRUE'    
+
+arche_api_metadata:    
+    path: '/api/mde/metadata/{type}/{lang}'
+    defaults:
+        _controller: '\Drupal\arche_mde_api\Controller\MainController::api_getMetadata'
+    requirements:        
+        _access: 'TRUE'    
+        
+arche_api_metadataGui:    
+    path: '/api/mde/metadataGui/{lang}'
+    defaults:
+        _controller: '\Drupal\arche_mde_api\Controller\MainController::api_getMetadataGui'
+    requirements:        
+        _access: 'TRUE'            
+      
+arche_api_baseOntology:    
+    path: '/api/mde/baseOntology/{lang}'
+    defaults:
+        _controller: '\Drupal\arche_mde_api\Controller\MainController::api_baseOntology'
+    requirements:        
+        _access: 'TRUE'     
+
+arche_api_root_table:
+    path: '/api/mde/getRootTable/{lang}'
+    defaults:
+        _controller: '\Drupal\arche_mde_api\Controller\MainController::api_getRootTable'
+    requirements:
+        uri: '^[^\?]*$'
+        _permission: 'access content'
+        _access: 'TRUE'      
+
+        

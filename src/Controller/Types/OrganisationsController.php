@@ -1,28 +1,28 @@
 <?php
 
-namespace Drupal\arche_mde_api\Controller;
+namespace Drupal\arche_mde_api\Controller\Types;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
- * Description of PublicationsController
+ * Description of OrganisationsController
  *
  * @author nczirjak
  */
-class PublicationsController {
+class OrganisationsController {
 
     public function execute(string $searchStr): Response {
         /*
          * Usage:
-         *  https://domain.com/browser/api/mde/publications/MYVALUE?_format=json
+         *  https://domain.com/browser/api/mde/organisation/MYVALUE?_format=json
          */
 
         if (empty($searchStr)) {
             return new JsonResponse(array("Please provide a search string"), 404, ['Content-Type' => 'application/json']);
         }
 
-        $object = new \Drupal\arche_mde_api\Object\PublicationsObject($searchStr);
+        $object = new \Drupal\arche_mde_api\Object\Types\OrganisationsObject($searchStr);
         $object->init();
 
         if (count($object->getData()) == 0) {

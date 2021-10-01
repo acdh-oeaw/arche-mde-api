@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\arche_mde_api\Object;
+namespace Drupal\arche_mde_api\Object\Types;
 
 /**
  * Description of PublicationsObject
@@ -10,12 +10,13 @@ namespace Drupal\arche_mde_api\Object;
 class PublicationsObject extends \Drupal\arche_mde_api\Object\MainObject {
 
     public function __construct(string $searchStr) {
-        parent::__construct($searchStr);
+        parent::__construct();
+        $this->str = strtolower($searchStr);
         $this->createModel();
     }
     
     protected function createModel(): void {
-        $this->model = new \Drupal\arche_mde_api\Model\PublicationsModel();
+        $this->model = new \Drupal\arche_mde_api\Model\Types\PublicationsModel();
     } 
 
 }

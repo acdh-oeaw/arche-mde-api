@@ -1,13 +1,13 @@
 <?php
 
-namespace Drupal\arche_mde_api\Model;
+namespace Drupal\arche_mde_api\Model\Types;
 
 /**
- * Description of PublicationsModel
+ * Description of PersonsModel
  *
  * @author nczirjak
  */
-class PublicationsModel extends \Drupal\arche_mde_api\Model\MainApiModel {
+class ConceptsModel extends \Drupal\arche_mde_api\Model\MainApiModel {
     
     public function getData(string $searchStr): array
     {
@@ -19,7 +19,7 @@ class PublicationsModel extends \Drupal\arche_mde_api\Model\MainApiModel {
             $query = $this->repodb->query(
                 "SELECT * from gui.apiGetData(:type, :searchStr)",
                 array(
-                    ':type' => $this->repo->getSchema()->namespaces->ontology.'Publication',
+                    ':type' => $this->repo->getSchema()->namespaces->ontology.'Concept',
                     ':searchStr' => strtolower($searchStr)
                 ),
                 ['allow_delimiter_in_query' => true, 'allow_square_brackets' => true]

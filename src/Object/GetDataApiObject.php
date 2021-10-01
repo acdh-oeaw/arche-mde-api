@@ -12,9 +12,10 @@ class GetDataApiObject extends \Drupal\arche_mde_api\Object\MainObject {
     private $type;
     
     public function __construct(string $type, string $searchStr) {
-        parent::__construct($searchStr);
+        parent::__construct();
+        $this->str = strtolower($searchStr);
         $this->createModel();
-        $this->formatSearchValues($type, $searchStr);
+        $this->formatSearchValues($type, $this->str);
     }
     
     protected function createModel(): void {

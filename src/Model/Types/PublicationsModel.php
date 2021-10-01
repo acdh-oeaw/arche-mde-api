@@ -1,16 +1,17 @@
 <?php
 
-namespace Drupal\arche_mde_api\Model;
+namespace Drupal\arche_mde_api\Model\Types;
 
 /**
- * Description of OrganisationsModel
+ * Description of PublicationsModel
  *
  * @author nczirjak
  */
-class OrganisationsModel extends \Drupal\arche_mde_api\Model\MainApiModel {
+class PublicationsModel extends \Drupal\arche_mde_api\Model\MainApiModel {
     
     public function getData(string $searchStr): array
-    {  
+    {
+       
         $result = array();
         //run the actual query
         try {
@@ -18,7 +19,7 @@ class OrganisationsModel extends \Drupal\arche_mde_api\Model\MainApiModel {
             $query = $this->repodb->query(
                 "SELECT * from gui.apiGetData(:type, :searchStr)",
                 array(
-                    ':type' => $this->repo->getSchema()->namespaces->ontology.'Organisation',
+                    ':type' => $this->repo->getSchema()->namespaces->ontology.'Publication',
                     ':searchStr' => strtolower($searchStr)
                 ),
                 ['allow_delimiter_in_query' => true, 'allow_square_brackets' => true]

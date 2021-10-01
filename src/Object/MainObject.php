@@ -15,8 +15,7 @@ class MainObject {
     protected $repo;
     protected $repodb;
 
-    public function __construct(string $searchStr) {
-        $this->str = strtolower($searchStr);
+    public function __construct() {
         (isset($_SESSION['language'])) ? $this->siteLang = strtolower($_SESSION['language']) : $this->siteLang = "en";
 
         $this->config = \Drupal::service('extension.list.module')->getPath('acdh_repo_gui') . '/config/config.yaml';

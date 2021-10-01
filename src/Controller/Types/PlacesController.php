@@ -1,35 +1,34 @@
 <?php
 
-namespace Drupal\arche_mde_api\Controller;
+namespace Drupal\arche_mde_api\Controller\Types;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
- * Description of ConceptsController
- * API endpoint for METADATA Editor 
+ * Description of PersonsController
  *
  * @author nczirjak
  */
-class ConceptsController {
-   
+class PlacesController {
+
     public function execute(string $searchStr): Response {
         /*
          * Usage:
-         *  https://domain.com/browser/api/mde/concepts/MYVALUE?_format=json
+         *  https://domain.com/browser/api/mde/places/MYVALUE?_format=json
          */
 
         if (empty($searchStr)) {
             return new JsonResponse(array("Please provide a search string"), 404, ['Content-Type' => 'application/json']);
         }
-        
-        $object = new \Drupal\arche_mde_api\Object\ConceptsObject($searchStr);
+
+        $object = new \Drupal\arche_mde_api\Object\Types\PlacesObject($searchStr);
         $object->init();
-        
+
         if (count($object->getData()) == 0) {
             return new JsonResponse(array("There is no resource"), 404, ['Content-Type' => 'application/json']);
         }
         return new JsonResponse($object->getData(), 200, ['Content-Type' => 'application/json']);
     }
-    
+
 }

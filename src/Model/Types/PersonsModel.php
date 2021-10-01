@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\arche_mde_api\Model;
+namespace Drupal\arche_mde_api\Model\Types;
 
 /**
  * Description of PersonsModel

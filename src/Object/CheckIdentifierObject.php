@@ -10,7 +10,8 @@ namespace Drupal\arche_mde_api\Object;
 class CheckIdentifierObject extends \Drupal\arche_mde_api\Object\MainObject {
 
     public function __construct(string $searchStr) {
-        parent::__construct($searchStr);
+        parent::__construct();
+        $this->str = strtolower($searchStr);
         $this->createModel();
     }
 
