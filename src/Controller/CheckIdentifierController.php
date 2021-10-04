@@ -17,6 +17,8 @@ class CheckIdentifierController {
         /*
          * Usage:
          *  https://domain.com/browser/api/mde/checkIdentifier/MYVALUE?_format=json
+         *  https://domain.com/browser/api/mde/checkIdentifier/id.acdh.oeaw.ac.at%20pub-calvetrobin1997?_format=json
+         *  https://domain.com/browser/api/mde/checkIdentifier/27637?_format=json
          */
 
         if (empty($searchStr)) {
