@@ -18,7 +18,7 @@ class RootTableObject extends \Drupal\arche_mde_api\Object\MainObject {
     }
 
     protected function createModel(): void {
-        $this->model = new \Drupal\arche_mde_api\Model\Metadata\MetadataGuiModel();
+        $this->model = new \Drupal\arche_mde_api\Model\Metadata\RootTableModel();
     }
 
     public function init(): array {

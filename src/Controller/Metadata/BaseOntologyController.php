@@ -14,7 +14,7 @@ class BaseOntologyController {
     public function execute(string $lang = "en"): JsonResponse {
         /*
          * Usage:
-         *  https://domain.com/browser/api/v2/baseOntology/lang?_format=json
+         *  https://domain.com/browser/api/mde/baseOntology/lang?_format=json
          */
 
         $object = new \Drupal\arche_mde_api\Object\Metadata\BaseOntologyObject($lang);

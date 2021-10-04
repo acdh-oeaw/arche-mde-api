@@ -82,21 +82,42 @@ class MainController extends \Drupal\Core\Controller\ControllerBase {
         return $controller->execute($searchStr);
     }
 
+    /**
+     * Display the ontology data by the given property name. F.e.: Person
+     * @param string $type
+     * @param string $lang
+     * @return JsonResponse
+     */
     public function api_getMetadata(string $type, string $lang): JsonResponse {
         $controller = new \Drupal\arche_mde_api\Controller\Metadata\MetadataController();
         return $controller->execute($type, $lang);
     }
 
+    /**
+     * 
+     * @param string $lang
+     * @return JsonResponse
+     */
     public function api_getMetadataGui(string $lang): JsonResponse {
         $controller = new \Drupal\arche_mde_api\Controller\Metadata\MetadataGuiController();
         return $controller->execute($lang);
     }
 
+    /**
+     * List Collection/project/Resource ontology
+     * @param string $lang
+     * @return JsonResponse
+     */
     public function api_baseOntology(string $lang): JsonResponse {
         $controller = new \Drupal\arche_mde_api\Controller\Metadata\BaseOntologyController();
         return $controller->execute($lang);
     }
 
+    /**
+     * Root table html view, for the ontology check
+     * @param string $lang
+     * @return Response
+     */
     public function api_getRootTable(string $lang): Response {
         $controller = new \Drupal\arche_mde_api\Controller\Metadata\RootTableController();
         return $controller->execute($lang);

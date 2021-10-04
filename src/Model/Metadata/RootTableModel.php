@@ -13,8 +13,9 @@ class RootTableModel extends \Drupal\arche_mde_api\Model\MainApiModel {
         parent::__construct();
     }
 
-    public function getData(): array {
-        $dbconnStr = yaml_parse_file(\Drupal::service('extension.list.module')->getPath('acdh_repo_gui') . '/config/config.yaml')['dbConnStr']['guest'];
+    public function getOntology(): array {
+        $dbconnStr = yaml_parse_file(\Drupal::service('extension.list.module')->getPath('acdh_repo_gui').'/config/config.yaml')['dbConnStr']['guest'];
+        
         $conn = new \PDO($dbconnStr);
         $cfg = (object) [
                     'skipNamespace' => $this->properties->baseUrl . '%', // don't forget the '%' at the end!
@@ -30,40 +31,17 @@ class RootTableModel extends \Drupal\arche_mde_api\Model\MainApiModel {
         ];
 
         $ontology = new \acdhOeaw\arche\lib\schema\Ontology($conn, $cfg);
-
-        //check the properties
-        $project = (isset($ontology->getClass($this->repo->getSchema()->namespaces->ontology.'Project')->properties)) ?
-                $ontology->getClass($this->repo->getSchema()->namespaces->ontology.'Project')->properties : "";
-
-        $collection = (isset($ontology->getClass($this->repo->getSchema()->namespaces->ontology.'Collection')->properties)) ?
-                $ontology->getClass($this->repo->getSchema()->namespaces->ontology.'Collection')->properties : "";
-
-        $topCollection = (isset($ontology->getClass($this->repo->getSchema()->namespaces->ontology.'TopCollection')->properties)) ?
-                $ontology->getClass($this->repo->getSchema()->namespaces->ontology.'TopCollection')->properties : "";
-
-        $resource = (isset($ontology->getClass($this->repo->getSchema()->namespaces->ontology.'Resource')->properties)) ?
-                $ontology->getClass($this->repo->getSchema()->namespaces->ontology.'Resource')->properties : "";
-
-        $metadata = (isset($ontology->getClass($this->repo->getSchema()->namespaces->ontology.'Metadata')->properties)) ?
-                $ontology->getClass($this->repo->getSchema()->namespaces->ontology.'Metadata')->properties : "";
-
-
-        $image = (isset($ontology->getClass($this->repo->getSchema()->namespaces->ontology.'Image')->properties)) ?
-                $ontology->getClass($this->repo->getSchema()->namespaces->ontology.'Image')->properties : "";
-
-        $publication = (isset($ontology->getClass($this->repo->getSchema()->namespaces->ontology.'Publication')->properties)) ?
-                $ontology->getClass($this->repo->getSchema()->namespaces->ontology.'Publication')->properties : "";
-
-        $place = (isset($ontology->getClass($this->repo->getSchema()->namespaces->ontology.'Place')->properties)) ?
-                $ontology->getClass($this->repo->getSchema()->namespaces->ontology.'Place')->properties : "";
-
-
-        $organisation = (isset($ontology->getClass($this->repo->getSchema()->namespaces->ontology.'Organisation')->properties)) ?
-                $ontology->getClass($this->repo->getSchema()->namespaces->ontology.'Organisation')->properties : "";
-
-        $person = (isset($ontology->getClass($this->repo->getSchema()->namespaces->ontology.'Person')->properties)) ?
-                $ontology->getClass($this->repo->getSchema()->namespaces->ontology.'Person')->properties : "";
-
+        $project =  $this->getOntologyDataByProperty($ontology, 'Project');
+        $collection =  $this->getOntologyDataByProperty($ontology, 'Collection');
+        $topCollection =  $this->getOntologyDataByProperty($ontology, 'TopCollection');
+        $resource =  $this->getOntologyDataByProperty($ontology, 'Resource');
+        $metadata =  $this->getOntologyDataByProperty($ontology, 'Metadata');
+        $image =  $this->getOntologyDataByProperty($ontology, 'Image');
+        $publication =  $this->getOntologyDataByProperty($ontology, 'Publication');
+        $place =  $this->getOntologyDataByProperty($ontology, 'Place');
+        $organisation =  $this->getOntologyDataByProperty($ontology, 'Organisation');
+        $person =  $this->getOntologyDataByProperty($ontology, 'Person');
+      
         return array(
             'project' => $project,
             'topcollection' => $topCollection, 'collection' => $collection,
@@ -73,5 +51,11 @@ class RootTableModel extends \Drupal\arche_mde_api\Model\MainApiModel {
             'person' => $person
         );
     }
+
+    private function getOntologyDataByProperty(\acdhOeaw\arche\lib\schema\Ontology &$ontology, string $property): mixed {
+        return (isset($ontology->getClass($this->repo->getSchema()->namespaces->ontology.$property)->properties)) ?
+                $ontology->getClass($this->repo->getSchema()->namespaces->ontology.$property)->properties : "";
+    }
+
 
 }
