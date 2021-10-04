@@ -7,15 +7,16 @@ namespace Drupal\arche_mde_api\Object;
  *
  * @author nczirjak
  */
-class MainObject {
-
+class MainObject
+{
     protected $result = array();
     protected $str = "";
     protected $model;
     protected $repo;
     protected $repodb;
 
-    public function __construct() {
+    public function __construct()
+    {
         (isset($_SESSION['language'])) ? $this->siteLang = strtolower($_SESSION['language']) : $this->siteLang = "en";
 
         $this->config = \Drupal::service('extension.list.module')->getPath('acdh_repo_gui') . '/config/config.yaml';
@@ -29,19 +30,23 @@ class MainObject {
         }
     }
 
-    protected function createModel(): void {
+    protected function createModel(): void
+    {
         $this->model = new \stdClass();
     }
 
-    public function init(): array {
+    public function init(): array
+    {
         return $this->formatView($this->model->getData($this->str));
     }
 
-    public function getData(): array {
+    public function getData(): array
+    {
         return $this->result;
     }
 
-    protected function formatView(array $data): array {
+    protected function formatView(array $data): array
+    {
         $this->result = array();
         foreach ($data as $k => $val) {
             foreach ($val as $v) {
@@ -63,5 +68,4 @@ class MainObject {
         }
         return $this->result = array_values($this->result);
     }
-
 }

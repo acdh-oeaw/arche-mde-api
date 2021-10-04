@@ -7,10 +7,10 @@ namespace Drupal\arche_mde_api\Model\Types;
  *
  * @author nczirjak
  */
-class OrganisationsModel extends \Drupal\arche_mde_api\Model\MainApiModel {
-    
+class OrganisationsModel extends \Drupal\arche_mde_api\Model\MainApiModel
+{
     public function getData(string $searchStr): array
-    {  
+    {
         $result = array();
         //run the actual query
         try {
@@ -36,5 +36,4 @@ class OrganisationsModel extends \Drupal\arche_mde_api\Model\MainApiModel {
         $this->changeBackDBConnection();
         return $result;
     }
-    
 }

@@ -7,19 +7,23 @@ namespace Drupal\arche_mde_api\Object;
  *
  * @author nczirjak
  */
-class CheckIdentifierObject extends \Drupal\arche_mde_api\Object\MainObject {
-
-    public function __construct(string $searchStr) {
+class CheckIdentifierObject extends \Drupal\arche_mde_api\Object\MainObject
+{
+    public function __construct(string $searchStr)
+    {
         parent::__construct();
         $this->str = strtolower($searchStr);
         $this->createModel();
     }
 
-    protected function createModel(): void {
+    protected function createModel(): void
+    {
         $this->model = new \Drupal\arche_mde_api\Model\CheckIdentifierModel();
     }
 
-    protected function formatView(array $data): array { {
+    protected function formatView(array $data): array
+    {
+        {
             $this->result = array();
             
             foreach ($data as $val) {
@@ -38,4 +42,3 @@ class CheckIdentifierObject extends \Drupal\arche_mde_api\Object\MainObject {
         }
     }
 }
-    

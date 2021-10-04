@@ -9,9 +9,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  *
  * @author nczirjak
  */
-class PersonsController {
-
-    public function execute(string $searchStr): JsonResponse {
+class PersonsController
+{
+    public function execute(string $searchStr): JsonResponse
+    {
         /*
          * Usage:
          *  https://domain.com/browser/api/mde/persons/MYVALUE?_format=json
@@ -31,5 +32,4 @@ class PersonsController {
         
         return new JsonResponse($object->getData(), 200, ['Content-Type' => 'application/json']);
     }
-
 }

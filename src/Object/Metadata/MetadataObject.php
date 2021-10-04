@@ -7,25 +7,28 @@ namespace Drupal\arche_mde_api\Object\Metadata;
  *
  * @author nczirjak
  */
-class MetadataObject extends \Drupal\arche_mde_api\Object\MainObject {
-
+class MetadataObject extends \Drupal\arche_mde_api\Object\MainObject
+{
     protected $model;
     private $type;
     private $lang;
     private $data = array();
     private $properties;
 
-    public function __construct(string $type, string $lang) {
+    public function __construct(string $type, string $lang)
+    {
         parent::__construct();
         $this->type = $type;
         $this->lang = $lang;
     }
 
-    protected function createModel(): void {
+    protected function createModel(): void
+    {
         $this->model = new \Drupal\arche_mde_api\Model\Metadata\MetadataModel();
     }
 
-    public function init(): array {
+    public function init(): array
+    {
         $this->createModel();
         $this->addNamespaceToType();
         return $this->processData($this->model->getOntology($this->type, $this->lang));
@@ -36,7 +39,8 @@ class MetadataObject extends \Drupal\arche_mde_api\Object\MainObject {
      * @param array $data
      * @return array
      */
-    private function processData(array $data): array {
+    private function processData(array $data): array
+    {
         $this->result = array();
         //if we dont have properties then we dont have data
         if ($this->initData($data) === false) {
@@ -55,7 +59,8 @@ class MetadataObject extends \Drupal\arche_mde_api\Object\MainObject {
      * change the type to the acdh format
      * @return void
      */
-    private function addNamespaceToType(): void {
+    private function addNamespaceToType(): void
+    {
         $this->type = $this->repodb->getSchema()->namespaces->ontology . ucfirst($this->type);
     }
 
@@ -64,7 +69,8 @@ class MetadataObject extends \Drupal\arche_mde_api\Object\MainObject {
      * @param array $data
      * @return bool
      */
-    private function initData(array $data): bool {
+    private function initData(array $data): bool
+    {
         if (isset($data['properties']) && count((array) $data['properties']) > 0) {
             $this->data = $data['properties'];
             return true;
@@ -76,7 +82,8 @@ class MetadataObject extends \Drupal\arche_mde_api\Object\MainObject {
      * Create the response header
      * @return void
      */
-    private function createHeader(): void {
+    private function createHeader(): void
+    {
         $this->result['$schema'] = "http://json-schema.org/draft-07/schema#";
         $this->result['id'] = $this->properties->class;
         $this->result['type'] = "object";
@@ -87,7 +94,8 @@ class MetadataObject extends \Drupal\arche_mde_api\Object\MainObject {
      * Create properties obj with values from the metadata api request
      * @param array $data
      */
-    private function creatMetadataObj(array $data) {
+    private function creatMetadataObj(array $data)
+    {
         $this->properties = new \stdClass();
 
         if (isset($data['class'])) {
@@ -104,9 +112,9 @@ class MetadataObject extends \Drupal\arche_mde_api\Object\MainObject {
     /**
      * Format the data for the metadata api request
      */
-    private function formatMetadataView(): void {
+    private function formatMetadataView(): void
+    {
         foreach ($this->data as $v) {
-
             $prop = $this->setUpPropertyValue($v);
            
             if (isset($v->label) && isset($v->label[$this->siteLang])) {
@@ -142,7 +150,8 @@ class MetadataObject extends \Drupal\arche_mde_api\Object\MainObject {
      * @param array $data
      * @return string
      */
-    private function checkCardinality(string $prop, object $obj) {
+    private function checkCardinality(string $prop, object $obj)
+    {
         $this->setUpMinCardinality($obj, $prop);
 
         $this->setUpMaxCardinality($obj, $prop);
@@ -163,7 +172,8 @@ class MetadataObject extends \Drupal\arche_mde_api\Object\MainObject {
      * @param array $v
      * @return string
      */
-    private function setUpPropertyValue(object $v): string {
+    private function setUpPropertyValue(object $v): string
+    {
         if (is_array($v->property)) {
             foreach ($v->property as $key => $value) {
                 if (strpos($value, $this->repodb->getSchema()->namespaces->ontology) !== false) {
@@ -179,7 +189,8 @@ class MetadataObject extends \Drupal\arche_mde_api\Object\MainObject {
      * @param object $v
      * @return void
      */
-    private function setUpRange(object $v, string $prop): void {
+    private function setUpRange(object $v, string $prop): void
+    {
         if (isset($v->range)) {
             $range = "";
             $rangeUrl = "";
@@ -201,7 +212,8 @@ class MetadataObject extends \Drupal\arche_mde_api\Object\MainObject {
         }
     }
 
-    private function setUpMinCardinality(object $obj, string $prop): void {
+    private function setUpMinCardinality(object $obj, string $prop): void
+    {
         if (isset($obj)) {
             $this->result['properties'][$prop]['minItems'] = (int) $obj->min;
             if ($obj->min >= 1) {
@@ -215,7 +227,8 @@ class MetadataObject extends \Drupal\arche_mde_api\Object\MainObject {
         }
     }
 
-    private function setUpMaxCardinality(object $obj, string $prop): void {
+    private function setUpMaxCardinality(object $obj, string $prop): void
+    {
         if (isset($obj->max)) {
             $this->result['properties'][$prop]['maxItems'] = (int) $obj->max;
             if ($obj->max > 1) {
@@ -223,5 +236,4 @@ class MetadataObject extends \Drupal\arche_mde_api\Object\MainObject {
             }
         }
     }
-
 }

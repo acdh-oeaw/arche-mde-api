@@ -7,8 +7,8 @@ namespace Drupal\arche_mde_api\Model;
  *
  * @author nczirjak
  */
-class MainApiModel {
-    
+class MainApiModel
+{
     protected $repodb;
     protected $config;
     protected $repo;

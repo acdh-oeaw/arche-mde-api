@@ -7,13 +7,15 @@ namespace Drupal\arche_mde_api\Model\Metadata;
  *
  * @author nczirjak
  */
-class MetadataGuiModel extends \Drupal\arche_mde_api\Model\MainApiModel {
-
-    public function __construct() {
+class MetadataGuiModel extends \Drupal\arche_mde_api\Model\MainApiModel
+{
+    public function __construct()
+    {
         parent::__construct();
     }
 
-    public function getOntology(): array {
+    public function getOntology(): array
+    {
         $dbconnStr = yaml_parse_file(\Drupal::service('extension.list.module')->getPath('acdh_repo_gui').'/config/config.yaml')['dbConnStr']['guest'];
         $conn = new \PDO($dbconnStr);
         $cfg = (object) [
@@ -37,5 +39,4 @@ class MetadataGuiModel extends \Drupal\arche_mde_api\Model\MainApiModel {
         
         return array('collection' => $collectionProp, 'project' => $projectProp, 'resource' => $resourceProp);
     }
-
 }

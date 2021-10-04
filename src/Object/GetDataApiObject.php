@@ -7,27 +7,31 @@ namespace Drupal\arche_mde_api\Object;
  *
  * @author nczirjak
  */
-class GetDataApiObject extends \Drupal\arche_mde_api\Object\MainObject {
-
+class GetDataApiObject extends \Drupal\arche_mde_api\Object\MainObject
+{
     private $type;
     
-    public function __construct(string $type, string $searchStr) {
+    public function __construct(string $type, string $searchStr)
+    {
         parent::__construct();
         $this->str = strtolower($searchStr);
         $this->createModel();
         $this->formatSearchValues($type, $this->str);
     }
     
-    protected function createModel(): void {
+    protected function createModel(): void
+    {
         $this->model = new \Drupal\arche_mde_api\Model\GetDataApiModel();
-    } 
+    }
     
-    public function init(): array {
+    public function init(): array
+    {
         return $this->formatView($this->model->getData($this->str, $this->type));
     }
 
-    private function formatSearchValues(string $type, string $searchStr): void {
+    private function formatSearchValues(string $type, string $searchStr): void
+    {
         $this->type = $this->repo->getSchema()->namespaces->ontology.ucfirst($type);
-        $this->str = strtolower($searchStr);        
+        $this->str = strtolower($searchStr);
     }
 }

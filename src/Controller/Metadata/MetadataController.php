@@ -9,9 +9,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  *
  * @author nczirjak
  */
-class MetadataController {
-
-    public function execute(string $type, string $lang = "en"): JsonResponse {
+class MetadataController
+{
+    public function execute(string $type, string $lang = "en"): JsonResponse
+    {
         /*
          * Usage:
          *  https://domain.com/browser/api/v2/metadata/type/lang?_format=json
@@ -30,5 +31,4 @@ class MetadataController {
 
         return new JsonResponse($content, 200, ['Content-Type' => 'application/json']);
     }
-
 }

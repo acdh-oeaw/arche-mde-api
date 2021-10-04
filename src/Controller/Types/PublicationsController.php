@@ -10,9 +10,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  *
  * @author nczirjak
  */
-class PublicationsController {
-
-    public function execute(string $searchStr): Response {
+class PublicationsController
+{
+    public function execute(string $searchStr): Response
+    {
         /*
          * Usage:
          *  https://domain.com/browser/api/mde/publications/MYVALUE?_format=json
@@ -30,5 +31,4 @@ class PublicationsController {
         }
         return new JsonResponse($object->getData(), 200, ['Content-Type' => 'application/json']);
     }
-
 }

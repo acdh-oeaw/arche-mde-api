@@ -7,13 +7,14 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Description of ConceptsController
- * API endpoint for METADATA Editor 
+ * API endpoint for METADATA Editor
  *
  * @author nczirjak
  */
-class ConceptsController {
-   
-    public function execute(string $searchStr): Response {
+class ConceptsController
+{
+    public function execute(string $searchStr): Response
+    {
         /*
          * Usage:
          *  https://domain.com/browser/api/mde/concepts/MYVALUE?_format=json
@@ -31,5 +32,4 @@ class ConceptsController {
         }
         return new JsonResponse($object->getData(), 200, ['Content-Type' => 'application/json']);
     }
-    
 }

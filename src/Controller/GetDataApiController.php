@@ -7,13 +7,14 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Description of GetDataApiController
- * API endpoint for METADATA Editor 
+ * API endpoint for METADATA Editor
  *
  * @author nczirjak
  */
-class GetDataApiController {
-   
-    public function execute(string $type, string $searchStr): Response {
+class GetDataApiController
+{
+    public function execute(string $type, string $searchStr): Response
+    {
         /*
          * Usage:
          *  https://domain.com/browser/api/mde/getData/TYpe/MYVALUE?_format=json
@@ -31,5 +32,4 @@ class GetDataApiController {
         }
         return new JsonResponse($object->getData(), 200, ['Content-Type' => 'application/json']);
     }
-    
 }
