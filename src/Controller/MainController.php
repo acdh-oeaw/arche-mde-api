@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 
 namespace Drupal\arche_mde_api\Controller;
@@ -93,8 +94,6 @@ class MainController extends \Drupal\Core\Controller\ControllerBase {
         return $controller->execute($type, $lang);
     }
 
-  
-
     /**
      * List Collection/project/Resource ontology
      * @param string $lang
@@ -104,6 +103,5 @@ class MainController extends \Drupal\Core\Controller\ControllerBase {
         $controller = new \Drupal\arche_mde_api\Controller\Metadata\BaseOntologyController();
         return $controller->execute($lang);
     }
-
 
 }

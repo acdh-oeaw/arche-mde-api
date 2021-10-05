@@ -7,15 +7,16 @@ namespace Drupal\arche_mde_api\Model;
  *
  * @author nczirjak
  */
-class CheckIdentifierModel extends \Drupal\arche_mde_api\Model\MainApiModel {
-
-    public function getData(string $searchStr): array {
+class CheckIdentifierModel extends \Drupal\arche_mde_api\Model\MainApiModel
+{
+    public function getData(string $searchStr): array
+    {
         $result = array();
         //run the actual query
         try {
             $this->setSqlTimeout();
             $query = $this->repodb->query(
-                    "select 
+                "select 
                         DISTINCT(i.id),  mv.property, mv.value, mv.lang
                     from identifiers as i
                     left join metadata_view as mv on mv.id = i.id
@@ -25,7 +26,7 @@ class CheckIdentifierModel extends \Drupal\arche_mde_api\Model\MainApiModel {
                         :avdate,
                         :type
                         );",
-                    array(
+                array(
                         ':repoid' => $searchStr,
                         ':title' => $this->repo->getSchema()->namespaces->ontology . 'hasTitle',
                         ':avdate' => $this->repo->getSchema()->namespaces->ontology . 'hasAvailableDate',
@@ -33,7 +34,6 @@ class CheckIdentifierModel extends \Drupal\arche_mde_api\Model\MainApiModel {
                     )
             );
             $result = $query->fetchAll(\PDO::FETCH_CLASS);
-            
         } catch (Exception $ex) {
             \Drupal::logger('arche_mde_api')->notice($ex->getMessage());
             $result = array();
@@ -44,5 +44,4 @@ class CheckIdentifierModel extends \Drupal\arche_mde_api\Model\MainApiModel {
         $this->changeBackDBConnection();
         return $result;
     }
-
 }

@@ -7,20 +7,21 @@ namespace Drupal\arche_mde_api\Model;
  *
  * @author nczirjak
  */
-class GetDataApiModel extends \Drupal\arche_mde_api\Model\MainApiModel {
-    
-    public function getData(string $searchStr, string $type): array {
+class GetDataApiModel extends \Drupal\arche_mde_api\Model\MainApiModel
+{
+    public function getData(string $searchStr, string $type): array
+    {
         $result = array();
         //run the actual query
         try {
             $this->setSqlTimeout('10000');
             $query = $this->repodb->query(
-                    "SELECT * from gui.apiGetData(:type, :searchStr)",
-                    array(
+                "SELECT * from gui.apiGetData(:type, :searchStr)",
+                array(
                         ':type' => $type,
                         ':searchStr' => $searchStr
                     ),
-                    ['allow_delimiter_in_query' => true, 'allow_square_brackets' => true]
+                ['allow_delimiter_in_query' => true, 'allow_square_brackets' => true]
             );
 
             $result = $query->fetchAll(\PDO::FETCH_CLASS | \PDO::FETCH_GROUP);
@@ -35,5 +36,4 @@ class GetDataApiModel extends \Drupal\arche_mde_api\Model\MainApiModel {
         $this->changeBackDBConnection();
         return $result;
     }
-    
 }

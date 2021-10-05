@@ -7,11 +7,10 @@ namespace Drupal\arche_mde_api\Model\Types;
  *
  * @author nczirjak
  */
-class PersonsModel extends \Drupal\arche_mde_api\Model\MainApiModel {
-    
+class PersonsModel extends \Drupal\arche_mde_api\Model\MainApiModel
+{
     public function getData(string $searchStr): array
     {
-       
         $result = array();
         //run the actual query
         try {
@@ -37,5 +36,4 @@ class PersonsModel extends \Drupal\arche_mde_api\Model\MainApiModel {
         $this->changeBackDBConnection();
         return $result;
     }
-    
 }
