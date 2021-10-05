@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 
 namespace Drupal\arche_mde_api\Controller;
