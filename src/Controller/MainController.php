@@ -93,15 +93,7 @@ class MainController extends \Drupal\Core\Controller\ControllerBase {
         return $controller->execute($type, $lang);
     }
 
-    /**
-     * 
-     * @param string $lang
-     * @return JsonResponse
-     */
-    public function api_getMetadataGui(string $lang): JsonResponse {
-        $controller = new \Drupal\arche_mde_api\Controller\Metadata\MetadataGuiController();
-        return $controller->execute($lang);
-    }
+  
 
     /**
      * List Collection/project/Resource ontology
@@ -113,14 +105,5 @@ class MainController extends \Drupal\Core\Controller\ControllerBase {
         return $controller->execute($lang);
     }
 
-    /**
-     * Root table html view, for the ontology check
-     * @param string $lang
-     * @return Response
-     */
-    public function api_getRootTable(string $lang): Response {
-        $controller = new \Drupal\arche_mde_api\Controller\Metadata\RootTableController();
-        return $controller->execute($lang);
-    }
 
 }
