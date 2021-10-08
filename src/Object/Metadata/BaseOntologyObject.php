@@ -18,7 +18,8 @@ class BaseOntologyObject extends \Drupal\arche_mde_api\Object\MainObject
         $this->lang = $lang;
     }
 
-    protected function createModel(): void {
+    protected function createModel(): void
+    {
         $this->model = new \Drupal\arche_gui_api\Model\Metadata\MetadataGuiModel();
     }
 

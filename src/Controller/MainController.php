@@ -10,14 +10,16 @@ use Symfony\Component\HttpFoundation\Response;
  *
  * @author nczirjak
  */
-class MainController extends \Drupal\Core\Controller\ControllerBase {
+class MainController extends \Drupal\Core\Controller\ControllerBase
+{
 
     /**
      * ACDH:Perons for metadata editor
      * @param string $searchStr
      * @return Response
      */
-    public function api_persons(string $searchStr): JsonResponse {
+    public function api_persons(string $searchStr): JsonResponse
+    {
         $controller = new \Drupal\arche_mde_api\Controller\Types\PersonsController();
         return $controller->execute($searchStr);
     }
@@ -27,7 +29,8 @@ class MainController extends \Drupal\Core\Controller\ControllerBase {
      * @param string $searchStr
      * @return Response
      */
-    public function api_concepts(string $searchStr): JsonResponse {
+    public function api_concepts(string $searchStr): JsonResponse
+    {
         $controller = new \Drupal\arche_mde_api\Controller\Types\ConceptsController();
         return $controller->execute($searchStr);
     }
@@ -37,7 +40,8 @@ class MainController extends \Drupal\Core\Controller\ControllerBase {
      * @param string $searchStr
      * @return Response
      */
-    public function api_places(string $searchStr): JsonResponse {
+    public function api_places(string $searchStr): JsonResponse
+    {
         $controller = new \Drupal\arche_mde_api\Controller\Types\PlacesController();
         return $controller->execute($searchStr);
     }
@@ -47,7 +51,8 @@ class MainController extends \Drupal\Core\Controller\ControllerBase {
      * @param string $searchStr
      * @return Response
      */
-    public function api_publications(string $searchStr): JsonResponse {
+    public function api_publications(string $searchStr): JsonResponse
+    {
         $controller = new \Drupal\arche_mde_api\Controller\Types\PublicationsController();
         return $controller->execute($searchStr);
     }
@@ -57,7 +62,8 @@ class MainController extends \Drupal\Core\Controller\ControllerBase {
      * @param string $searchStr
      * @return Response
      */
-    public function api_organisations(string $searchStr): JsonResponse {
+    public function api_organisations(string $searchStr): JsonResponse
+    {
         $controller = new \Drupal\arche_mde_api\Controller\Types\OrganisationsController();
         return $controller->execute($searchStr);
     }
@@ -67,7 +73,8 @@ class MainController extends \Drupal\Core\Controller\ControllerBase {
      * @param string $searchStr
      * @return Response
      */
-    public function api_getData(string $type, string $searchStr): JsonResponse {
+    public function api_getData(string $type, string $searchStr): JsonResponse
+    {
         $controller = new \Drupal\arche_mde_api\Controller\GetDataApiController();
         return $controller->execute($type, $searchStr);
     }
@@ -77,7 +84,8 @@ class MainController extends \Drupal\Core\Controller\ControllerBase {
      * @param string $searchStr
      * @return Response
      */
-    public function api_check_identifier(string $searchStr): JsonResponse {
+    public function api_check_identifier(string $searchStr): JsonResponse
+    {
         $controller = new \Drupal\arche_mde_api\Controller\CheckIdentifierController();
         return $controller->execute($searchStr);
     }
@@ -88,7 +96,8 @@ class MainController extends \Drupal\Core\Controller\ControllerBase {
      * @param string $lang
      * @return JsonResponse
      */
-    public function api_getMetadata(string $type, string $lang): JsonResponse {
+    public function api_getMetadata(string $type, string $lang): JsonResponse
+    {
         $controller = new \Drupal\arche_mde_api\Controller\Metadata\MetadataController();
         return $controller->execute($type, $lang);
     }
@@ -98,9 +107,9 @@ class MainController extends \Drupal\Core\Controller\ControllerBase {
      * @param string $lang
      * @return JsonResponse
      */
-    public function api_baseOntology(string $lang): JsonResponse {
+    public function api_baseOntology(string $lang): JsonResponse
+    {
         $controller = new \Drupal\arche_mde_api\Controller\Metadata\BaseOntologyController();
         return $controller->execute($lang);
     }
-
 }
